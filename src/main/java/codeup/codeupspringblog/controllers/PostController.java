@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+// @RequestMappping  will allow you to put
 public class PostController {
 
     private String id = "view the form for creating a post";
@@ -29,10 +30,13 @@ public class PostController {
         return this.id;
     }
 
+
     @PostMapping("/posts/create")
     @ResponseBody
     public String posts3(String id){
         return "create a new post";
     }
+
+
 
 }
