@@ -1,27 +1,30 @@
 package codeup.codeupspringblog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-// @RequestMappping  will allow you to put
+@RequestMapping("/posts")
+
 public class PostController {
 
-    private String id = "view the form for creating a post";
+
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String posts(){
-        return "posts index page";
+
+//    These are all the posts
+    public String allUserPosts(Model model){
+
+
+        return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String posts1(@PathVariable String id){
-        return id;
+    public String posts1(@PathVariable String id, Model model){
+        model.addAttribute("post",id );
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
