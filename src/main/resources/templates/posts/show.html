@@ -7,7 +7,7 @@
 <body>
 <div th:if="${post}">
     <h2 th:text="${post.title}"></h2>
-    <p th:text="${post.body}"></p>
+    <p th:text="${post.message}"></p>
 </div>
 <p th:unless="${post}">Could not find post</p>
 </body>
