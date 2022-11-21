@@ -5,13 +5,17 @@ import codeup.codeupspringblog.Repository.PostRepository;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="post_table")
 public class Post1 {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
 
+    @Column(nullable = false)
     private String message;
 
     public long getId() {
