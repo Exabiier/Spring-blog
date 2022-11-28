@@ -2,6 +2,7 @@ package codeup.codeupspringblog.models;
 // This is a POJO ("Plain Old Java Object")
 
 import javax.persistence.*;
+import java.util.function.Supplier;
 
 @Entity
 @Table(name="coffees")
@@ -18,6 +19,11 @@ public class Coffee {
 
     @Column(nullable = false, length = 100)
     private String brand;
+
+//    suppllier  connection to coffee
+    @ManyToOne
+
+    private supplier supplier;
 
     public String getRoast() {
         return roast;

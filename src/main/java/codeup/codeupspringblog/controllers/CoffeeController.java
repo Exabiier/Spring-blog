@@ -3,6 +3,7 @@ package codeup.codeupspringblog.controllers;
 import codeup.codeupspringblog.models.Coffee;
 import codeup.codeupspringblog.repositories.CoffeeRepository;
 
+import codeup.codeupspringblog.repositories.supplierRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,16 @@ import java.util.List;
 public class CoffeeController {
 
     private final CoffeeRepository coffeeDao;
+    private final supplierRepository suppliersDao;
 
-    public CoffeeController(CoffeeRepository coffeeDao){
+    public CoffeeController(CoffeeRepository coffeeDao, supplierRepository suppliersDao){
         this.coffeeDao = coffeeDao;
+        this.suppliersDao = suppliersDao;
+    }
+
+    public CoffeeController( supplierRepository suppliersDao){
+
+        this.suppliersDao = suppliersDao;
     }
 
     @GetMapping
@@ -62,4 +70,8 @@ public class CoffeeController {
         return "coffee";
     }
 
+    @GetMapping("/suppliers")
+    public String showSupplierForm() {
+        return "/suppliers";
+    }
 }
