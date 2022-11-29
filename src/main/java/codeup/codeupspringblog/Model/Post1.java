@@ -1,6 +1,8 @@
 package codeup.codeupspringblog.Model;
 
 import codeup.codeupspringblog.Repository.PostRepository;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -17,6 +19,11 @@ public class Post1 {
 
     @Column(nullable = false)
     private String message;
+
+    @ManyToOne
+//    @JoinColumn(name="user_id")
+    @JsonManagedReference
+    Users user;
 
     public long getId() {
         return id;
@@ -54,5 +61,11 @@ public class Post1 {
         this.id = id;
         this.title = title;
         this.message = message;
+    }
+
+    public Post1(String title, String message, Users user) {
+        this.title = title;
+        this.message = message;
+        this.user = user;
     }
 }

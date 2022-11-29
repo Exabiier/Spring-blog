@@ -1,13 +1,14 @@
 package codeup.codeupspringblog.controllers;
 
-import codeup.codeupspringblog.Model.Post;
 import codeup.codeupspringblog.Model.Post1;
+import codeup.codeupspringblog.Model.Users;
 import codeup.codeupspringblog.Repository.PostRepository;
+import codeup.codeupspringblog.Repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,14 +16,29 @@ import java.util.List;
 
 public class PostController {
 
+
+//  /////////////  The Post Doa  //////////////
     private final PostRepository postDoa;
 
-    public PostController(PostRepository postDoa) {
+
+
+//  /////////////  The user Doa //////////////
+
+    private final UserRepository usersDoa;
+
+//  /////////////  Constructor //////////////
+
+    public PostController(PostRepository postDoa, UserRepository usersDoa) {
         this.postDoa = postDoa;
+        this.usersDoa = usersDoa;
     }
 
 
 
+
+///////////////////////////////////////////////
+//////////////  Controller  ///////////////////
+///////////////////////////////////////////////
     @GetMapping
 
 //    These are all the post from a user
@@ -70,11 +86,29 @@ public class PostController {
         Post1 coffee = new Post1(title, message);
         postDoa.save(coffee);
         return "/posts/create-post";
-
     }
 
 //    @GetMapping("/create-posts")
+///////////////////////////////////////////////
+/////////  Mapping for blog post  /////////////
+///////////////////////////////////////////////
 
+//    Create
+    @GetMapping("/create-blog-post")
+    public String showCreateForm(Model model) {
+        model.addAttribute("ad", new Post1());
+        return "/posts/create-blog-post";
+    }
+
+
+    @PostMapping("/create-blog-post")
+//    We need to use the name attribute to get the value from the inputs
+    public String addBlogPost(@ModelAttribute Post1 user, @RequestParam(name="number") Long number){
+
+        Post1 post = new Post1(user.getTitle(), user.getMess)
+        postDoa.save(user);
+        return "/posts/create-post";
+    }
 
 
 
