@@ -23,7 +23,12 @@ public class Post1 {
     @ManyToOne
 //    @JoinColumn(name="user_id")
     @JsonManagedReference
-    Users user;
+    User user;
+
+    public Post1(User user) {
+        this.user = user;
+
+    }
 
     public long getId() {
         return id;
@@ -63,7 +68,7 @@ public class Post1 {
         this.message = message;
     }
 
-    public Post1(String title, String message, Users user) {
+    public Post1(String title, String message, User user) {
         this.title = title;
         this.message = message;
         this.user = user;

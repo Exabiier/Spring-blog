@@ -1,15 +1,16 @@
 package codeup.codeupspringblog.controllers;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.security.Principal;
+
+@RestController
 public class HomeController {
 
-    @GetMapping("/")
-    @ResponseBody
-    public String landingPage(){
-        return "This is the landing page!";
+//
+    @GetMapping
+    public String home (Principal principal) {
+        return "Hello, " + principal.getName();
     }
 }
