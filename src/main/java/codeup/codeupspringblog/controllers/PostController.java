@@ -1,10 +1,10 @@
 package codeup.codeupspringblog.controllers;
 
 import codeup.codeupspringblog.Model.Post1;
-import codeup.codeupspringblog.Model.Users;
+import codeup.codeupspringblog.Model.User;
 import codeup.codeupspringblog.Repository.PostRepository;
 import codeup.codeupspringblog.Repository.UserRepository;
-import org.apache.catalina.User;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -103,10 +103,10 @@ public class PostController {
 
     @PostMapping("/create-blog-post")
 //    We need to use the name attribute to get the value from the inputs
-    public String addBlogPost(@ModelAttribute Post1 user, @RequestParam(name="number") Long number){
-
-        Post1 post = new Post1(user.getTitle(), user.getMess)
-        postDoa.save(user);
+    public String addBlogPost(@ModelAttribute Post1 post){
+        User user = usersDoa.findById(1L);
+        Post1 post1 = new Post1(user);
+        postDoa.save(post1);
         return "/posts/create-post";
     }
 
